@@ -7,11 +7,11 @@ body {
 
 .header {
   /* background-color: #282c34; */
-  height: 15vh;
+  height: 10vh;
   display: flex;
   /* flex-direction: column; */
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
   border-bottom: 4px dashed #c5c50ab5;
@@ -23,7 +23,7 @@ body {
 }
 
 .game-container {
-  min-height: 80vh;
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,6 +41,8 @@ body {
 
 .mini-board {
   border: 6px groove #c5c50ab5;
+  padding: 8px;
+  margin: 5px;
 }
 .letter-box, .letter-box-found {
   height: 70px;
@@ -108,5 +110,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  min-height: 15vh;
   width: 95%;
 }

@@ -8,21 +8,22 @@ import axios from 'axios'
 // endpoint = 'https://od-api.oxforddictionaries.com/api/v2/entries/{source_lang}/{word_id}'
 // export const getDefinition(search_word, source_lang) {
 
+// const API = axios.create({
+//   baseURL: 'https://od-api.oxforddictionaries.com/api/v2/entries/en/'
+// })
+
 const API = axios.create({
-  baseURL: 'https://od-api.oxforddictionaries.com/api/v2/entries/en/'
+  baseURL: 'https://dictionaryapi.com/api/v3/references/collegiate/json/'
 })
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 
 export function getWordDefinition (searchWord) {
   return API
-    .get(`/${searchWord}`, {
-      headers: {
-        OXFORD_APP_ID: '7e34cbc8',
-        OXFORD_APP_KEY: '9f0002e1ec49289bec208516fd450264'
-      }
-    })
-    .then(res => console.log(res.data.results))
+    .get(`/${searchWord}/?key=ddfcdec6-9bfc-477b-bba8-0e3cb22310e0`
+      , {
+      })
+    .then(res => res.data[0].shortdef)
 }
 
 // }

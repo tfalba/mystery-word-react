@@ -18,6 +18,9 @@ function App () {
   const [newWordList, setNewWordList] = useState()
   const [newWord, setNewWord] = useState()
   const [wordHistory, setWordHistory] = useState([])
+  const [definition, setDefinition] = useState()
+  const [show, setShow] = useState(false)
+  const [showDefinition, setShowDefinition] = useState(false)
 
   fetch(wordFile)
     .then(response => response.text())
@@ -28,7 +31,11 @@ function App () {
   }
 
   function updateDefinition (searchWord) {
-    getWordDefinition(searchWord)
+    getWordDefinition(searchWord).then(shortdef => {
+      console.log(shortdef)
+      setDefinition(shortdef)
+      setShowDefinition(true)
+    })
   }
   useEffect(createWordList, [wordString])
   function createWordList () {
@@ -45,13 +52,12 @@ function App () {
         const possibleWord = randomWord(newWordList)
         console.log(possibleWord)
         if (possibleWord.length < 9) {
-          // getWordDefinition()
-          const result = 'random string'
-          if (result) {
-            setNewWord(possibleWord)
-            // setWordDefinition(result)
-            wordIsSet = true
-          }
+          // getWordDefinition(possibleWord).then(shortdef => {
+          //   console.log(shortdef)
+          //   setDefinition(shortdef)
+          // })
+          setNewWord(possibleWord)
+          wordIsSet = true
         }
       }
     }
@@ -96,6 +102,7 @@ function App () {
     myHistory.push(newWord)
     setWordHistory(myHistory)
     setWord()
+    setDefinition()
   }
 
   function handleGuessLetters (letter) {
@@ -118,47 +125,67 @@ function App () {
   }
 
   return (
-    <div>
-      <header className='header'>
-        <div style={{ minWidth: '250px', height: '15vh', maxWidth: '30%', backgroundSize: 'cover', backgroundImage: `url(${questionMarkImage})` }} />
-        <div>
-          This will be Mystery Word
-        </div>
-        <div style={{ minWidth: '250px', height: '15vh', maxWidth: '30%', backgroundSize: 'cover', backgroundImage: `url(${questionMarkImage})` }} />
+    <div style={{ minWidth: '100%', height: '100vh', backgroundSize: 'cover', backgroundImage: `url(${questionMarkImage})` }}>
+      {/* <header className='header'> */}
+      {/* <div style={{ minWidth: '100%', height: '7vh', maxWidth: '30%', backgroundSize: 'contain', backgroundImage: `url(${questionMarkImage})` }} /> */}
 
-      </header>
+      {/* <div style={{ minWidth: '250px', height: '15vh', maxWidth: '30%', backgroundSize: 'cover', backgroundImage: `url(${questionMarkImage})` }} /> */}
+
+      {/* </header> */}
+      <div className='header' style={{ color: 'white', fontSize: '50px', textAlign: 'center' }}>
+        Mystery Word
+      </div>
       {wordLetters && alphabet && guessLetters && wordHistory && newWord && (
-        <div className='game-container'>
+        <div>
+          <div className='game-container'>
 
-          <div className='scoreboard' style={{ display: 'flex' }}>
-            {wordLetters.map((letter, idx) => (
-              <div key={idx}>
-                <div className={guessLetters.includes(letter) ? 'letter-box-found' : 'letter-box'}><span className={guessLetters.includes(letter) ? 'show' : 'hide'}>{letter.toUpperCase()}</span></div>
+            <div className='scoreboard' style={{ display: 'flex' }}>
+              {wordLetters.map((letter, idx) => (
+                <div key={idx}>
+                  <div className={guessLetters.includes(letter) ? 'letter-box-found' : 'letter-box'}><span className={guessLetters.includes(letter) ? 'show' : 'hide'}>{letter.toUpperCase()}</span></div>
+                </div>
+              ))}
+            </div>
+            <div style={{ width: '85%', display: 'flex', flexWrap: 'wrap' }}>
+              {alphabet.map((letter, idx) =>
+                <div value={letter} onClick={() => handleGuessLetters(letter)} className={guessLetters.includes(letter) ? 'guess-box-guessed' : 'guess-box'} key={idx}><span className={guessLetters.includes(letter) && !wordLetters.includes(letter) ? 'highlight' : null}>{letter.toUpperCase()}</span></div>)}
+            </div>
+            <div className='summary'>
+              <div className='mini-board' style={{ flexBasis: '18%', display: 'flex', flexDirection: 'column' }}>
+                <div className='button' onClick={() => gameComplete()}>{gameIsComplete ? 'Play Again' : 'Start New Round'}</div>
               </div>
-            ))}
-          </div>
-          <div style={{ width: '85%', display: 'flex', flexWrap: 'wrap' }}>
-            {alphabet.map((letter, idx) =>
-              <div value={letter} onClick={() => handleGuessLetters(letter)} className={guessLetters.includes(letter) ? 'guess-box-guessed' : 'guess-box'} key={idx}><span className={guessLetters.includes(letter) && !wordLetters.includes(letter) ? 'highlight' : null}>{letter.toUpperCase()}</span></div>)}
-          </div>
-          <div className='summary'>
-            <div className='mini-board' style={{ flexBasis: '15%', display: 'flex', flexDirection: 'column' }}>
-              <div onClick={() => gameComplete()}>{gameIsComplete ? 'Play Again' : 'Start New Round'}</div>
-            </div>
-            <div className='mini-board' style={{ flexBasis: '50%', display: 'flex', flexDirection: 'column' }}>
-              <div onClick={() => updateDefinition(newWord)}>Lookup Word</div>
-            </div>
-            <div className='mini-board' style={{ flexBasis: '30%', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ textAlign: 'center' }}>Word History</div>
-              <div style={{ marginTop: '40px', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-                {wordHistory.map((word, idx) =>
-                  <div style={{ display: 'flex' }} key={idx}>{word.toUpperCase()}</div>
+              <div className='mini-board' style={{ flexBasis: '40%', display: 'flex', flexDirection: 'column' }}>
+                <div className='button' onClick={() => updateDefinition(newWord)}>Lookup Word</div>
+                <div style={{ marginTop: '25px' }}>{showDefinition && (
+                  <div>
+                    <div style={{ fontSize: '18px' }}>{definition || 'definition not available'}</div>
+                    <div style={{ marginTop: '20px' }} className='button' onClick={() => setShowDefinition(false)}>Hide Definition</div>
+                    {/* <div>{definition}</div>
+                  <div className='button' onClick={() => setShowDefinition(false)}>Hide Definition</div> */}
+                  </div>
                 )}
+                </div>
+
+              </div>
+              <div className='mini-board' style={{ flexBasis: '18%' }}>
+                <div className='button' onClick={() => setShow(!show)}>{show ? 'Hide Word' : 'Show Word'}</div>
+                {show && <div style={{ marginTop: '25px' }}>{newWord}</div>}
+              </div>
+              <div className='mini-board' style={{ flexBasis: '30%', display: 'flex', flexDirection: 'column' }}>
+                <div>Word History</div>
+                <div style={{ marginTop: '25px', display: 'flex', flexWrap: 'wrap' }}>
+                  {wordHistory.map((word, idx) =>
+                    <div style={{ display: 'flex', padding: '5px', fontSize: '20px' }} key={idx}>{word}</div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
+          <div style={{ width: '20%' }} />
         </div>
       )}
+      {/* <div style={{ minWidth: '100%', height: '7vh', maxWidth: '30%', backgroundSize: 'contain', backgroundImage: `url(${questionMarkImage})` }} /> */}
+
     </div>
   )
 }
