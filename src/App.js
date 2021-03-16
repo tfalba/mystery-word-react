@@ -2,9 +2,9 @@ import './App.css'
 import { useEffect, useState } from 'react'
 import wordFile from './words.txt'
 import questionMarkImage from './images/question-mark.jpg'
-import grainyBlackBackground from './images/grainy-black-background.jpg'
+// import grainyBlackBackground from './images/grainy-black-background.jpg'
 import { getWordDefinition } from './api'
-import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 // import words from './words.txt'
 
@@ -186,7 +186,7 @@ function App () {
                         {wordHistory.map((word, idx) =>
                           <div style={{ display: 'flex', padding: '5px', fontSize: '20px' }} key={idx}>{word}</div>
                         )}
-                      </div>}
+                                      </div>}
                     </div>
                   </div>
                 </div>
