@@ -148,12 +148,15 @@ function App () {
               <div>
                 <div className='game-container'>
 
-                  <div className='scoreboard' style={{ display: 'flex' }}>
-                    {wordLetters.map((letter, idx) => (
-                      <div key={idx}>
-                        <div className={guessLetters.includes(letter) ? 'letter-box-found' : 'letter-box'}><span className={guessLetters.includes(letter) ? 'show' : 'hide'}>{letter.toUpperCase()}</span></div>
-                      </div>
-                    ))}
+                  <div className='scoreboard' style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ color: 'white', fontSize: '35px', textAlign: 'center' }}>Mystery Word</div>
+                    <div style={{ display: 'flex' }}>
+                      {wordLetters.map((letter, idx) => (
+                        <div key={idx}>
+                          <div className={guessLetters.includes(letter) ? 'letter-box-found' : 'letter-box'}><span className={guessLetters.includes(letter) ? 'show' : 'hide'}>{letter.toUpperCase()}</span></div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <div style={{ backgroundColor: '#00000061', width: '85%', display: 'flex', flexWrap: 'wrap' }}>
                     {alphabet.map((letter, idx) =>
