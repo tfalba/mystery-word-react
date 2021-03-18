@@ -134,14 +134,14 @@ function App () {
       <Switch>
 
         <Route path='/'>
-          <div style={{ backgroundSize: 'cover', backgroundImage: `url(${questionMarkImage})`, width: '100%', height: '100vh' }}>
-            {/* <header className='header'> */}
-            {/* <div style={{ minWidth: '100%', height: '7vh', maxWidth: '30%', backgroundSize: 'contain', backgroundImage: `url(${questionMarkImage})` }} /> */}
+          <div style={{ width: '100%', height: '100vh' }}>
+            <header className='header'>
+              <div style={{ minWidth: '100%', height: '7vh', maxWidth: '30%', backgroundSize: 'contain', backgroundImage: `url(${questionMarkImage})` }} />
 
-            {/* <div style={{ minWidth: '250px', height: '15vh', maxWidth: '30%', backgroundSize: 'cover', backgroundImage: `url(${questionMarkImage})` }} /> */}
+              {/* <div style={{ minWidth: '250px', height: '15vh', maxWidth: '30%', backgroundSize: 'cover', backgroundImage: `url(${questionMarkImage})` }} /> */}
 
-            {/* </header> */}
-            {/* <div className='header' style={{ color: 'white', fontSize: '50px', textAlign: 'center' }}>
+            </header>
+            {/* <div className='header' style={{ backgroundSize: 'cover', backgroundImage: `url(${questionMarkImage})`, color: 'white', fontSize: '50px', textAlign: 'center' }}>
               Mystery Word
             </div> */}
             {wordLetters && alphabet && guessLetters && wordHistory && newWord && (

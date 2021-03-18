@@ -7,20 +7,20 @@ body {
 
 .header {
   /* background-color: #282c34; */
-  height: 10vh;
+  height: 7vh;
   display: flex;
   /* flex-direction: column; */
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  border-bottom: 8px groove #c5c50ab5;
+  border-bottom: 8px groove #ecec4feb;
   background-color: #00000061;
     
 }
 
 .game-container {
-  min-height: 100vh;
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,9 +33,7 @@ body {
   padding: 40px;
   /* width: 65%; */
   justify-content: center;
-  background-color: #000000cf;
-
-  /* border: 8px groove #c5c50ab5; */
+  background-color: #00000078;
 }
 
 .mini-board {
@@ -43,13 +41,14 @@ body {
   padding: 8px;
   margin: 5px;
   color: white;
-  background-color: #000000cf;
+  background-color: #00000078;
 }
+
 .letter-box, .letter-box-found {
   height: 70px;
   width: 70px;
   background-color: rgb(58 238 56 / 88%);
-  background-color: yellow;
+  background-color: #ecec4feb;
   text-align: center;
   line-height: 65px;
   margin: 5px;
@@ -76,7 +75,7 @@ body {
 .guess-box, .guess-box-guessed {
   height: 60px;
   width: 60px;
-  background-color: yellow;
+  background-color: #ecec4feb;
   text-align: center;
   line-height: 55px;
   margin: 8px;
@@ -116,9 +115,10 @@ body {
 }
 
 .button {
-  background-color:rgb(124, 128, 0);
+  background-color:#ecec4feb;
   width: 200px;
   text-align:center;
   padding: 2px;
   border-radius: 10px;
+  color: black;
 }
