@@ -158,7 +158,7 @@ function App () {
                       ))}
                     </div>
                   </div>
-                  <div style={{ backgroundColor: '#00000061', width: '85%', display: 'flex', flexWrap: 'wrap' }}>
+                  <div style={{ width: '85%', display: 'flex', flexWrap: 'wrap' }}>
                     {alphabet.map((letter, idx) =>
                       <div value={letter} onClick={() => handleGuessLetters(letter)} className={guessLetters.includes(letter) ? 'guess-box-guessed' : 'guess-box'} key={idx}><span className={guessLetters.includes(letter) && !wordLetters.includes(letter) ? 'highlight' : null}>{letter.toUpperCase()}</span></div>)}
                   </div>
@@ -189,7 +189,7 @@ function App () {
                         {wordHistory.map((word, idx) =>
                           <div style={{ display: 'flex', padding: '5px', fontSize: '20px' }} key={idx}>{word}</div>
                         )}
-                                      </div>}
+                      </div>}
                     </div>
                   </div>
                 </div>

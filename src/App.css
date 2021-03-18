@@ -1,8 +1,8 @@
 body {
   /* text-align: center; */
-  background-image: linear-gradient( 
+  /* background-image: linear-gradient( 
 45deg
- , #d5d5e0, #120c12);
+ , #d5d5e0, #120c12); */
 }
 
 .header {
@@ -33,7 +33,7 @@ body {
   padding: 40px;
   /* width: 65%; */
   justify-content: center;
-  background-color: #00000078;
+  background-color: #000000c9;
 }
 
 .mini-board {
@@ -41,7 +41,7 @@ body {
   padding: 8px;
   margin: 5px;
   color: white;
-  background-color: #00000078;
+  background-color: #000000c9;
 }
 
 .letter-box, .letter-box-found {
