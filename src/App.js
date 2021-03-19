@@ -53,18 +53,19 @@ function App () {
       let wordIsSet = false
       while (wordIsSet === false) {
         const possibleWord = randomWord(newWordList)
-        console.log(possibleWord)
         if (possibleWord.length < 9) {
           // getWordDefinition(possibleWord).then(shortdef => {
-          //   console.log(shortdef)
-          //   setDefinition(shortdef)
-          // })
+          //   if (shortdef !== undefined) {
           setNewWord(possibleWord)
           wordIsSet = true
+          // } else {
+          //   wordIsSet = false
+          // }
         }
       }
     }
   }
+
 
   useEffect(displayWord, [newWord])
   function displayWord () {
@@ -189,7 +190,7 @@ function App () {
                         {wordHistory.map((word, idx) =>
                           <div style={{ display: 'flex', padding: '5px', fontSize: '20px' }} key={idx}>{word}</div>
                         )}
-                      </div>}
+                                      </div>}
                     </div>
                   </div>
                 </div>
